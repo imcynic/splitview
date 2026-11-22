@@ -1,0 +1,6 @@
+__pycache__/
+*.pyc
+*.pyo
+.tv_client_key
+*.log
+.env
