@@ -1,9 +1,10 @@
 # splitview
 
-Control LG webOS TV multi-view (split screen / PiP) programmatically over SSH, bypassing the on-screen menu.
+Unlock multi-view (split screen / PiP) on LG webOS TVs without an LG account or a "supported" TV model.
 
-Talks directly to the `com.webos.service.multiviewcontroller` Luna bus service on rooted LG webOS TVs.
-Tested on an LG OLED with webOS 24.
+LG gates multi-view behind a mandatory login that harvests your data, and even after signing in, many models will reject perfectly valid HDMI combos with fake "incompatible input" errors. The hardware is fully capable — LG just locks it. This tool bypasses all of that by talking directly to the internal Luna bus service that the TV's own UI uses, skipping every software restriction.
+
+Requires root SSH access via [RootMyTV](https://rootmy.tv) or equivalent. Tested on an LG OLED (webOS 24).
 
 ## What it does
 
@@ -12,10 +13,11 @@ Tested on an LG OLED with webOS 24.
 - Move and resize the PiP window
 - Switch audio between views
 - Close multi-view
+- No LG account required, no "incompatible input" gatekeeping
 
 ## Requirements
 
-- LG webOS TV with root SSH access
+- LG webOS TV with root SSH access ([RootMyTV](https://rootmy.tv))
 - Python 3.9+, PySide6
 - Passwordless SSH to TV (`ssh root@<tv-ip>`)
 
@@ -49,7 +51,11 @@ ssh -tt root@<tv-ip> 'luna-send -n 1 -f -a com.webos.app.multiviewsettings \
 | `getStatus` | `{}` | Current state |
 | `switchAudio` | | Switch audio source |
 
+## Why this exists
+
+LG's multi-view feature is built into the TV's firmware on models that officially "don't support" it. The `com.webos.service.multiviewcontroller` service is present and fully functional — LG just doesn't expose it through the normal UI unless you sign in and have a model they've decided to allow. This tool calls the same internal API the TV's own settings app uses, with no account check and no input validation gatekeeping.
+
 ## Status
 
-API fully mapped and tested on a live TV. GUI controller is a prototype — works but needs a rebuild.
+API fully mapped and tested on a live TV. GUI controller is a prototype.
 Not affiliated with LG.
