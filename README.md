@@ -55,6 +55,11 @@ ssh -tt root@<tv-ip> 'luna-send -n 1 -f -a com.webos.app.multiviewsettings \
 
 LG's multi-view feature is built into the TV's firmware on models that officially "don't support" it. The `com.webos.service.multiviewcontroller` service is present and fully functional — LG just doesn't expose it through the normal UI unless you sign in and have a model they've decided to allow. This tool calls the same internal API the TV's own settings app uses, with no account check and no input validation gatekeeping.
 
+## See also
+
+- [degoogle-lg](https://github.com/imcynic/degoogle-lg) — block telemetry, ACR, and ads on LG webOS TVs
+- [RootMyTV](https://rootmy.tv) — root exploit for LG webOS TVs
+
 ## Status
 
 API fully mapped and tested on a live TV. GUI controller is a prototype.
